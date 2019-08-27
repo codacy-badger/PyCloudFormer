@@ -1,0 +1,28 @@
+#   ---
+#   You may find the templates for all current supported AWS services. These templates can be
+#   copy and pasted into the root.yaml folder and modified to your needs.
+#   ---
+#   DO NOT MODIFY!
+#   ---
+
+GlueJob<additional-naming-here>:
+    AllocatedCapacity: None
+    CommandName: String
+    CommandPythonVersion: String
+    CommandScriptLocation: String
+    Connections:
+        - String
+    DefaultArguments: Json
+    Description: String
+    MaxConcurrentRuns: Double
+    GlueVersion: String
+    LogUri: String
+    MaxCapacity: Double
+    MaxRetries: Double
+    Name: String
+    NumberOfWorkers: Integer
+    Role: String
+    SecurityConfiguration: String
+    WorkerType: String
+
+GlueClassifier<additional-naming-here>:

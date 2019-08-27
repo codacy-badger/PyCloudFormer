@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  {% for k, v in RootConfig.items() %}
+
+    {% if "GlueJob" in k %}
+    {{ "#   " + v.Description }}
+    {{ k }}:
+        Type: AWS::Glue::Job
+        Properties:
+            {% if v.AllocatedCapacity != None %}
+            AllocatedCapacity: {{ v.AllocatedCapacity }}
+            {% endif %}
+            Command:
+                {% if v.CommandName != None %}
+                Name: {{ v.CommandName }}
+                {% endif %}
+                {% if v.CommandPythonVersion != None %}
+                PythonVersion: {{ v.CommandPythonVersion }}
+                {% endif %}
+                {% if v.CommandScriptLocation != None %}
+                ScriptLocation: {{ v.CommandScriptLocation }}
+                {% endif %}
+            {% for i in v.Connections if i != None %}
+            Connections:
+                {% for j in v.Connections %}
+                - {{ j }}
+                {% endfor %}
+            {% endfor %}
+            {% if v.DefaultArguments != None %}
+            DefaultArguments: {{ v.DefaultArguments }}
+            {% endif %}
+            {% if v.Description != None %}
+            Description: {{ v.Description }}
+            {% endif %}
+            {% if v.MaxConcurrentRuns != None %}
+            ExecutionProperty:
+                MaxConcurrentRuns: {{ v.MaxConcurrentRuns }}
+            {% endif %}
+            {% if v.GlueVersion != None %}
+            GlueVersion: {{ v.GlueVersion }}
+            {% endif %}
+            {% if v.LogUri != None %}
+            LogUri: {{ v.LogUri }}
+            {% endif %}
+            {% if v.MaxCapacity != None %}
+            MaxCapacity: {{ v.MaxCapacity }}
+            {% endif %}
+            {% if v.MaxRetries != None %}
+            MaxRetries: {{ v.MaxRetries }}
+            {% endif %}
+            {% if v.Name != None %}
+            Name: {{ v.Name }}
+            {% endif %}
+            {% if v.NumberOfWorkers != None %}
+            NumberOfWorkers: {{ v.NumberOfWorkers }}
+            {% endif %}
+            {% if v.Role != None %}
+            Role: {{ v.Role }}
+            {% endif %}
+            {% if v.SecurityConfiguration != None %}
+            SecurityConfiguration: {{ v.SecurityConfiguration }}
+            {% endif %}
+            {% if v.WorkerType != None %}
+            WorkerType: {{ v.WorkerType }}
+            {% endif %}
+    {% endif %}
+
+    {% if "GlueClassifier" in k %}
+
+    {% endif %}
+  {% endfor %}

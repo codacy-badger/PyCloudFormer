@@ -1,0 +1,30 @@
+RootConfig:
+    #   ---
+    #   RootConfig allows for multiple CloudFormation Scripts to be generated at a scalable level
+    #   Specify Service Type along with Parameters, Service Types can be duplicated to create multiples
+    #   of the same service with matching or different parameters. note each Service Type will need the
+    #   SPECIFIC service name along with additional names suited to your needs. This will result in the
+    #   stack-name of your service Cloud Formation Script.
+    #   ---
+    #   If Parameter is not required, leave its value BLANK and PyCloudFormer will not add it to the
+    #   final output file.
+    #   ---
+    GlueJob1:
+        AllocatedCapacity: None
+        CommandName: String
+        CommandPythonVersion: String
+        CommandScriptLocation: String
+        Connections:
+            -
+        DefaultArguments: Json
+        Description: String
+        MaxConcurrentRuns: Double
+        GlueVersion: String
+        LogUri: String
+        MaxCapacity: Double
+        MaxRetries: Double
+        Name: String
+        NumberOfWorkers: Integer
+        Role: String
+        SecurityConfiguration: String
+        WorkerType: String
