@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
   {% for k, v in RootConfig.items() %}
-
     {% if "GlueJob" in k %}
     {{ "#   " + v.Description }}
     {{ k }}:
@@ -66,6 +65,29 @@ Resources:
     {% endif %}
 
     {% if "GlueClassifier" in k %}
-
+    {{ k }}:
+        Type: AWS::Glue::Classifier
+        Properties:
+          CsvClassifier:
+            AllowSingleColumn: Boolean
+            ContainsHeader: String
+            Delimiter: String
+            DisableValueTrimming: Boolean
+            Header:
+              - String
+            Name: String
+            QuoteSymbol: String
+          GrokClassifier:
+            Classification: String
+            CustomPatterns: String
+            GrokPattern: String
+            Name: String
+          JsonClassifier:
+            JsonPath: String
+            Name: String
+          XMLClassifier:
+            Classification: String
+            Name: String
+            RowTag: String
     {% endif %}
   {% endfor %}

@@ -1,7 +1,32 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
+
+    GlueClassifier:
+        Type: AWS::Glue::Classifier
+        Properties:
+          CsvClassifier:
+            AllowSingleColumn: Boolean
+            ContainsHeader: String
+            Delimiter: String
+            DisableValueTrimming: Boolean
+            Header:
+              - String
+            Name: String
+            QuoteSymbol: String
+          GrokClassifier:
+            Classification: String
+            CustomPatterns: String
+            GrokPattern: String
+            Name: String
+          JsonClassifier:
+            JsonPath: String
+            Name: String
+          XMLClassifier:
+            Classification: String
+            Name: String
+            RowTag: String
     #   String
-    GlueJob1:
+    GlueJob:
         Type: AWS::Glue::Job
         Properties:
             AllocatedCapacity: None
@@ -22,26 +47,5 @@ Resources:
             Role: String
             SecurityConfiguration: String
             WorkerType: String
-    #   String
-    GlueJob2:
-        Type: AWS::Glue::Job
-        Properties:
-            AllocatedCapacity: None
-            Command:
-                Name: String
-                PythonVersion: String
-                ScriptLocation: String
-            DefaultArguments: Json
-            Description: String
-            ExecutionProperty:
-                MaxConcurrentRuns: Double
-            GlueVersion: String
-            LogUri: String
-            MaxCapacity: Double
-            MaxRetries: Double
-            Name: String
-            NumberOfWorkers: Integer
-            Role: String
-            SecurityConfiguration: String
-            WorkerType: String
+
 

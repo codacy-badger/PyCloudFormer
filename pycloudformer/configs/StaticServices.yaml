@@ -2,14 +2,35 @@ RootConfig:
     #   ---
     #   RootConfig allows for multiple CloudFormation Scripts to be generated at a scalable level
     #   Specify Service Type along with Parameters, Service Types can be duplicated to create multiples
-    #   of the same service with matching or different parameters. note each Service Type will need the
+    #   of the same service with matching or different parameters. Note each Service Type will need the
     #   SPECIFIC service name along with additional names suited to your needs. This will result in the
     #   stack-name of your service Cloud Formation Script.
     #   ---
     #   If Parameter is not required, leave its value BLANK and PyCloudFormer will not add it to the
-    #   final output file.
+    #   final output file. If an entire service is not required, remove the Stack entirely and PyCloudFormer
+    #   will not add it to the final output file.
     #   ---
-    GlueJob1:
+
+    GlueClassifier:
+        Name: String
+        Classification: String
+        CsvClassifier:
+            AllowSingleColumn: Boolean
+            ContainsHeader: String
+            Delimiter: String
+            DisableValueTrimming: Boolean
+            Header:
+                - String
+            QuoteSymbol: String
+        GrokClassifier:
+            CustomPatterns: String
+            GrokPattern: String
+        JsonClassifier:
+            JsonPath: String
+        XMLClassifier:
+            RowTag: String
+
+    GlueJob:
         AllocatedCapacity: None
         CommandName: String
         CommandPythonVersion: String

@@ -1,6 +1,6 @@
 import unittest
 
-from environment import *
+from pycloudformer.environment import *
 
 
 class TestSum(unittest.TestCase):

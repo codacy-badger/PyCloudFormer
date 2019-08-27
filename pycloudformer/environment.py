@@ -1,9 +1,9 @@
 import os
 
 __environment__ = [
-    'templates/',
-    'configs/',
-    'output/',
+    'pycloudformer/output',
+    'pycloudformer/configs',
+    'pycloudformer/templates',
 ]
 
 
