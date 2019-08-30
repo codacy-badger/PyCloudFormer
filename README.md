@@ -1,4 +1,4 @@
-![alt text](static/logo.png "PyCloudFormer Logo" ) 
+![alt text](pycloudformer/static/logo.png "PyCloudFormer Logo" ) 
 
 ---
 ### Cloud Formation Program that Generates AWS CloudFormation scripts in YAML
@@ -16,7 +16,7 @@ super easy to read and understand.
 PyCloudFormer makes use of vanilla Python, Jinja2 and YAML for easy-to-read CloudFormation Script creation.
 The configurations beyond the dynamic YAML and Jinja2 files would ideally be simplistic.
 
-![alt text](static/python.png "Python Logo" ) ![alt text](static/yaml.png "Yaml Logo" ) 
+![alt text](pycloudformer/static/python.png "Python Logo" ) ![alt text](pycloudformer/static/yaml.png "Yaml Logo" ) 
 
 For now the user would interact with:
 * YAML Configurations: pycloudformer/configs/StaticServices.yaml
@@ -31,7 +31,7 @@ This interface with the application will be refined over time as the templating 
 As most AWS users will know, the services are constantly under rapid development. Changes and improvements will me
 introduced almost daily. 
 
-![alt text](static/aws.png "AWS Logo" )
+![alt text](pycloudformer/static/aws.png "AWS Logo" )
 
 I work on this project in my spare time, and would like to refine and write better code and
 also produce the most current CloudFormation scripts in the application. However, patience with the project is 

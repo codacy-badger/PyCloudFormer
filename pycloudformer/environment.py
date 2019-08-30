@@ -1,11 +1,5 @@
 import os
 
-__environment__ = [
-    'pycloudformer/output',
-    'pycloudformer/configs',
-    'pycloudformer/templates',
-]
-
 
 def make_dir(e):
     """
@@ -23,16 +17,3 @@ def find_dir(e):
     :return: boolean
     """
     return os.path.exists(os.path.dirname(e))
-
-
-def environment(env=None):
-    """
-    generates environment for pycloudformer
-    :param env: environment variables
-    :return: none
-    """
-    if env is None:
-        env = __environment__
-    for e in env:
-        if not find_dir(e):
-            make_dir(e)

@@ -68,15 +68,29 @@ Resources:
     {{ k }}:
         Type: AWS::Glue::Classifier
         Properties:
+          {% if v.CsvClassifier.Delimiter != None and v.CsvClassifier.QuoteSymbol != None %}
           CsvClassifier:
-            AllowSingleColumn: Boolean
-            ContainsHeader: String
-            Delimiter: String
-            DisableValueTrimming: Boolean
+            {% if v.CsvClassifier.AllowSingleColumn != None %}
+            AllowSingleColumn: {{v.CsvClassifier.AllowSingleColumn}}
+            {% endif %}
+            {% if v.CsvClassifier.ContainsHeader != None %}
+            ContainsHeader: {{v.CsvClassifier.ContainsHeader}}
+            {% endif %}
+            {% if v.CsvClassifier.Delimiter != None %}
+            Delimiter: {{v.CsvClassifier.Delimiter}}
+            {% endif %}
+            {% if v.CsvClassifier.DisableValueTrimming != None %}
+            DisableValueTrimming: {{v.CsvClassifier.DisableValueTrimming}}
+            {% endif %}
+            {% for i in v.CsvClassifier.Header if i != None %}
             Header:
-              - String
+                {% for j in v.CsvClassifier.Header %}
+              - {{ j }}
+                {% endfor %}
+            {% endfor %}
             Name: String
             QuoteSymbol: String
+          {% endif %}
           GrokClassifier:
             Classification: String
             CustomPatterns: String
