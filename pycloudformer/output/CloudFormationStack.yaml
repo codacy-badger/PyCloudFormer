@@ -25,6 +25,30 @@ Resources:
             SecurityConfiguration: String
             WorkerType: String
     #   String
+    GlueJob2:
+        Type: AWS::Glue::Job
+        Properties:
+            AllocatedCapacity: None
+            Command:
+                Name: String
+                PythonVersion: String
+                ScriptLocation: String
+            Connections:
+                - String
+            DefaultArguments: Json
+            Description: String
+            ExecutionProperty:
+                MaxConcurrentRuns: Double
+            GlueVersion: String
+            LogUri: String
+            MaxCapacity: Double
+            MaxRetries: Double
+            Name: String
+            NumberOfWorkers: Integer
+            Role: String
+            SecurityConfiguration: String
+            WorkerType: String
+    #   String
     GlueClassifier:
         Type: AWS::Glue::Classifier
         Properties:
@@ -72,7 +96,7 @@ Resources:
             Name: String
             Role: String
             Schedule:
-                ScheduleExpression: String
+                ScheduleExpression: 
             SchemaChangePolicy:
                 DeleteBehavior: String
                 UpdateBehavior: String
@@ -82,6 +106,5 @@ Resources:
                 JdbcTargets:
                     - JdbcTarget
                 S3Targets:
-                    -   Exclusions:
-                            - String
-                        Path: String
+                    - Path: String
+

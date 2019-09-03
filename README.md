@@ -41,3 +41,12 @@ expected. Please feel free to add any comments or suggestions.
 To see details on the project and what is currently happening in the development stages have a look:
 * [Project Kanban](https://github.com/DirksCGM/PyCloudFormer/projects/1)
 * [Development Wiki](https://github.com/DirksCGM/PyCloudFormer/wiki/PyCloudFormer-Development-Journal)
+
+## PyCloudFormer now supports:
+* Static AWS Glue Services
+    * Glue Jobs
+    * Glue Classifier
+    * Glue Database
+    * Glue Crawler
+    * more will be added...
+* More Services will be added...

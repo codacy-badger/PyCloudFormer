@@ -31,6 +31,27 @@ RootConfig:
         SecurityConfiguration: String
         WorkerType: String
 
+    GlueJob2:
+        AllocatedCapacity: None
+        CommandName: String
+        CommandPythonVersion: String
+        CommandScriptLocation: String
+        Connections:
+            - String
+        DefaultArguments: Json
+        Description: String
+        MaxConcurrentRuns: Double
+        GlueVersion: String
+        LogUri: String
+        MaxCapacity: Double
+        MaxRetries: Double
+        Name: String
+        NumberOfWorkers: Integer
+        Role: String
+        SecurityConfiguration: String
+        WorkerType: String
+
+
     GlueClassifier:
         Name: String
         Classification: String
@@ -75,3 +96,4 @@ RootConfig:
             - JdbcTarget
         S3Targets:
             - String
+

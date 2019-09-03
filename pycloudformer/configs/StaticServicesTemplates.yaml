@@ -5,7 +5,7 @@
 #   DO NOT MODIFY!
 #   ---
 
-GlueJob<additional-naming-here>:
+GlueJob<additional-name-here>:
     AllocatedCapacity: None
     CommandName: String
     CommandPythonVersion: String
@@ -25,4 +25,48 @@ GlueJob<additional-naming-here>:
     SecurityConfiguration: String
     WorkerType: String
 
-GlueClassifier<additional-naming-here>:
+GlueClassifier<additional-name-here>:
+    Name: String
+    Classification: String
+    CsvClassifier:
+        AllowSingleColumn: Boolean
+        ContainsHeader: String
+        Delimiter: String
+        DisableValueTrimming: Boolean
+        Header:
+            - String
+        QuoteSymbol: String
+    GrokClassifier:
+        CustomPatterns: String
+        GrokPattern: String
+    JsonClassifier:
+        JsonPath: String
+    XMLClassifier:
+        RowTag: String
+
+GlueDatabase<additional-name-here>:
+    CatalogId: String
+    Description: String
+    LocationUri: String
+    Name: String
+    Parameters: Json
+
+GlueCrawler<additional-name-here>:
+    Classifiers:
+        - String
+    Configuration: String
+    CrawlerSecurityConfiguration: String
+    DatabaseName: String
+    Description: String
+    Name: String
+    Role: String
+    ScheduleExpression: String
+    DeleteBehavior: String
+    UpdateBehavior: String
+    TablePrefix: String
+    Tags: Json
+    JdbcTargets:
+        - JdbcTarget
+    S3Targets:
+        - String
+

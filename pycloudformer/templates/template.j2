@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-# ToDo: Define variables for cloud formation stacks
+{# ToDo: Define variables for cloud formation stacks #}
 Resources:
 {% for k, v in RootConfig.items() %}
     {% if "GlueJob" in k %}
@@ -20,7 +20,6 @@ Resources:
                 {% if v.CommandScriptLocation != None %}
                 ScriptLocation: {{ v.CommandScriptLocation }}
                 {% endif %}
-            # ToDo: Fix lists in Template Loops
             {% for i in v.Connections if i != None %}
             Connections:
                 - {{ v.Connections[0] }}
@@ -171,26 +170,58 @@ Resources:
                 {{ '- ' + cl }}
                 {% endfor %}
             {% endfor %}
-            Configuration: String
-            CrawlerSecurityConfiguration: String
-            DatabaseName: String
-            Description: String
-            Name: String
-            Role: String
+            {% if v.Configuration != None %}
+            Configuration: {{ v.Configuration }}
+            {% endif %}
+            {% if v.CrawlerSecurityConfiguration != None %}
+            CrawlerSecurityConfiguration: {{ v.CrawlerSecurityConfiguration }}
+            {% endif %}
+            {% if v.DatabaseName != None %}
+            DatabaseName: {{ v.DatabaseName }}
+            {% endif %}
+            {% if v.Description != None %}
+            Description: {{ v.Description }}
+            {% endif %}
+            {% if v.Name != None %}
+            Name: {{ v.Name }}
+            {% endif %}
+            {% if v.Role != None %}
+            Role: {{ v.Role }}
+            {% endif %}
+            {% if v.ScheduleExpression != None %}
             Schedule:
-                ScheduleExpression: String
+                ScheduleExpression: {{ vScheduleExpression }}
+            {% endif %}
+            {% if v.DeleteBehavior != None and v.UpdateBehavior != None %}
             SchemaChangePolicy:
-                DeleteBehavior: String
-                UpdateBehavior: String
-            TablePrefix: String
-            Tags: Json
+                {% if v.DeleteBehavior != None %}
+                DeleteBehavior: {{ v.DeleteBehavior }}
+                {% endif %}
+                {% if v.UpdateBehavior != None %}
+                UpdateBehavior: {{ v.UpdateBehavior }}
+                {% endif %}
+            {% endif %}
+            {% if v.TablePrefix != None %}
+            TablePrefix: {{ v.TablePrefix }}
+            {% endif %}
+            {% if v.Tags != None %}
+            Tags: {{ v.Tags }}
+            {% endif %}
+            {% if v.JdbcTargets != None and v.S3Targets != None %}
             Targets:
+                {% if v.JdbcTargets != None %}
                 JdbcTargets:
-                    - JdbcTarget
+                    {% for j in v.JdbcTargets %}
+                    - {{ j }}
+                    {% endfor %}
+                {% endif %}
+                {% if v.S3Targets != None %}
                 S3Targets:
-                    -   Exclusions:
-                            - String
-                        Path: String
+                    {% for s in v.S3Targets %}
+                    - Path: {{ s }}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
     {% endif %}
     {% endif %}
 {######################################################################################################################}
