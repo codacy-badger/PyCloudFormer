@@ -70,3 +70,14 @@ GlueCrawler<additional-name-here>:
     S3Targets:
         - String
 
+S3<additional-name-here>:
+    Description: String
+    AccelerationStatus: String
+    KMSMasterKeyID: String
+    SSEAlgorithm: String
+    BucketName: String
+    VersioningConfiguration: String
+    BlockPublicAcls: Boolean
+    BlockPublicPolicy: Boolean
+    IgnorePublicAcls: Boolean
+    RestrictPublicBuckets: Boolean

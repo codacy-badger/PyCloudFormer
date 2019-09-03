@@ -225,4 +225,48 @@ Resources:
     {% endif %}
     {% endif %}
 {######################################################################################################################}
+    {% if "S3" in k %}
+    {% if v.Name != None %}
+    {{ '#   ' + v.Description }}
+    {{ k }}:
+        Type: AWS::S3::Bucket
+        Properties:
+            {% if v.AccelerationStatus != None %}
+            AccelerateConfiguration:
+                AccelerationStatus: {{ v.AccelerationStatus }}
+            {% endif %}
+            {% if v.KMSMasterKeyID != None or v.SSEAlgorithm != None %}
+            BucketEncryption:
+                ServerSideEncryptionConfiguration:
+                    -   ServerSideEncryptionByDefault:
+                            {% if v.KMSMasterKeyID != None %}
+                            KMSMasterKeyID: {{ v.KMSMasterKeyID }}
+                            {% endif %}
+                            {% if v.SSEAlgorithm != None %}
+                            SSEAlgorithm: {{ v.SSEAlgorithm }}
+                            {% endif %}
+            {% endif %}
+            BucketName: {{ v.BucketName }}
+            {% if v.VersioningConfiguration != None %}
+            VersioningConfiguration:
+                Status: {{ v.VersioningConfiguration }}
+            {% endif %}
+            {% if v.BlockPublicAcls != None or v.BlockPublicPolicy or v.BlockPublicPolicy != None or v.RestrictPublicBuckets != None %}
+            PublicAccessBlockConfiguration:
+                {% if v.BlockPublicAcls != None %}
+                BlockPublicAcls: {{ v.BlockPublicAcls }}
+                {% endif %}
+                {% if v.BlockPublicPolicy != None %}
+                BlockPublicPolicy: {{ v.BlockPublicPolicy }}
+                {% endif %}
+                {% if v.IgnorePublicAcls != None %}
+                IgnorePublicAcls: {{ v.IgnorePublicAcls }}
+                {% endif %}
+                {% if v.RestrictPublicBuckets != None %}
+                RestrictPublicBuckets: {{ v.RestrictPublicBuckets }}
+                {% endif %}
+            {% endif %}
+    {% endif %}
+    {% endif %}
+{######################################################################################################################}
 {% endfor %}
