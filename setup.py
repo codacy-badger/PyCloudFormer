@@ -12,11 +12,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/DirksCGM/PyCloudFormer",
-    packages=setuptools.find_packages(),
+    packages=['jinja2', 'yaml', 'setuptools', 'unittest'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3.0",
         "Operating System :: OS Independent",
     ],
 )
-
