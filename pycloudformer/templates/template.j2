@@ -1,6 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
+# ToDo: Define variables for cloud formation stacks
 Resources:
-  {% for k, v in RootConfig.items() %}
+{% for k, v in RootConfig.items() %}
     {% if "GlueJob" in k %}
     {{ "#   " + v.Description }}
     {{ k }}:
@@ -19,11 +20,10 @@ Resources:
                 {% if v.CommandScriptLocation != None %}
                 ScriptLocation: {{ v.CommandScriptLocation }}
                 {% endif %}
+            # ToDo: Fix lists in Template Loops
             {% for i in v.Connections if i != None %}
             Connections:
-                {% for j in v.Connections %}
-                - {{ j }}
-                {% endfor %}
+                - {{ v.Connections[0] }}
             {% endfor %}
             {% if v.DefaultArguments != None %}
             DefaultArguments: {{ v.DefaultArguments }}
@@ -63,45 +63,135 @@ Resources:
             WorkerType: {{ v.WorkerType }}
             {% endif %}
     {% endif %}
-
+{######################################################################################################################}
     {% if "GlueClassifier" in k %}
+    {{ "#   " + v.Name }}
     {{ k }}:
         Type: AWS::Glue::Classifier
         Properties:
-          {% if v.CsvClassifier.Delimiter != None and v.CsvClassifier.QuoteSymbol != None %}
-          CsvClassifier:
-            {% if v.CsvClassifier.AllowSingleColumn != None %}
-            AllowSingleColumn: {{v.CsvClassifier.AllowSingleColumn}}
+            {% if v.CsvClassifier.Delimiter != None and v.CsvClassifier.QuoteSymbol != None %}
+            CsvClassifier:
+                {% if v.CsvClassifier.AllowSingleColumn != None %}
+                AllowSingleColumn: {{v.CsvClassifier.AllowSingleColumn}}
+                {% endif %}
+                {% if v.CsvClassifier.ContainsHeader != None %}
+                ContainsHeader: {{v.CsvClassifier.ContainsHeader}}
+                {% endif %}
+                {% if v.CsvClassifier.Delimiter != None %}
+                Delimiter: {{v.CsvClassifier.Delimiter}}
+                {% endif %}
+                {% if v.CsvClassifier.DisableValueTrimming != None %}
+                DisableValueTrimming: {{v.CsvClassifier.DisableValueTrimming}}
+                {% endif %}
+                {% for i in v.CsvClassifier.Header if i != None %}
+                Header:
+                    {% for j in v.CsvClassifier.Header %}
+                    - {{ j }}
+                    {% endfor %}
+                {% endfor %}
+                {% if v.Name != None %}
+                Name: {{ v.Name }}
+                {% endif %}
+                {% if v.CsvClassifier.QuoteSymbol != None %}
+                QuoteSymbol: {{ v.CsvClassifier.QuoteSymbol }}
+                {% endif %}
             {% endif %}
-            {% if v.CsvClassifier.ContainsHeader != None %}
-            ContainsHeader: {{v.CsvClassifier.ContainsHeader}}
+            {% if v.GrokClassifier.CustomPatterns != None and v.GrokClassifier.GrokPattern != None %}
+            GrokClassifier:
+                {% if v.Classification != None %}
+                Classification: {{ v.Classification }}
+                {% endif %}
+                {% if v.GrokClassifier.CustomPatterns != None %}
+                CustomPatterns: {{ v.GrokClassifier.CustomPatterns }}
+                {% endif %}
+                {% if v.GrokClassifier.GrokPattern != None %}
+                GrokPattern: {{ v.GrokClassifier.GrokPattern }}
+                {% endif %}
+                {% if v.Name != None %}
+                Name: {{ v.Name }}
+                {% endif %}
             {% endif %}
-            {% if v.CsvClassifier.Delimiter != None %}
-            Delimiter: {{v.CsvClassifier.Delimiter}}
+            {% if v.JsonClassifier.JsonPath != None and v.JsonClassifier.Name != None %}
+            JsonClassifier:
+                {% if v.JsonClassifier.JsonPath != None %}
+                JsonPath: {{ v.JsonClassifier.JsonPath }}
+                {% endif %}
+                {% if v.Name != None %}
+                Name: {{ v.Name }}
+                {% endif %}
             {% endif %}
-            {% if v.CsvClassifier.DisableValueTrimming != None %}
-            DisableValueTrimming: {{v.CsvClassifier.DisableValueTrimming}}
+            {% if v.XMLClassifier.Classification != None and v.XMLClassifier.Name != None %}
+            XMLClassifier:
+                {% if v.Classification != None %}
+                Classification: {{ v.Classification }}
+                {% endif %}
+                {% if v.Name != None %}
+                Name: {{ v.Name }}
+                {% endif %}
+                {% if v.XMLClassifier.RowTag != None %}
+                RowTag: {{ v.XMLClassifier.RowTag }}
+                {% endif %}
             {% endif %}
-            {% for i in v.CsvClassifier.Header if i != None %}
-            Header:
-                {% for j in v.CsvClassifier.Header %}
-              - {{ j }}
+    {% endif %}
+{######################################################################################################################}
+    {% if "GlueDatabase" in k %}
+    {% if v.Name != None and v.Parameters != None %}
+    {{ '#   ' + v.Description }}
+    {{ k }}:
+        Type: AWS::Glue::Database
+        Properties:
+            {% if v.CatalogId != None %}
+            CatalogId: {{ v.CatalogId }}
+            {% endif %}
+            DatabaseInput:
+                {% if v.Description != None %}
+                Description: {{ v.Description }}
+                {% endif %}
+                {% if v.LocationUri != None %}
+                LocationUri: {{ v.LocationUri }}
+                {% endif %}
+                {% if v.Name != None %}
+                Name: {{ v.Name }}
+                {% endif %}
+                {% if v.Parameters != None %}
+                Parameters: {{ v.Parameters }}
+                {% endif %}
+    {% endif %}
+    {% endif %}
+{######################################################################################################################}
+    {% if "GlueCrawler" in k %}
+    {% if v.Name != None and v.Parameters != None %}
+    {{ '#   ' + v.Description }}
+    {{ k }}:
+        Type: AWS::Glue::Crawler
+        Properties:
+            {% for c in v.Classifiers if c != None %}
+            Classifiers:
+                {% for cl in v.Classifiers %}
+                {{ '- ' + cl }}
                 {% endfor %}
             {% endfor %}
+            Configuration: String
+            CrawlerSecurityConfiguration: String
+            DatabaseName: String
+            Description: String
             Name: String
-            QuoteSymbol: String
-          {% endif %}
-          GrokClassifier:
-            Classification: String
-            CustomPatterns: String
-            GrokPattern: String
-            Name: String
-          JsonClassifier:
-            JsonPath: String
-            Name: String
-          XMLClassifier:
-            Classification: String
-            Name: String
-            RowTag: String
+            Role: String
+            Schedule:
+                ScheduleExpression: String
+            SchemaChangePolicy:
+                DeleteBehavior: String
+                UpdateBehavior: String
+            TablePrefix: String
+            Tags: Json
+            Targets:
+                JdbcTargets:
+                    - JdbcTarget
+                S3Targets:
+                    -   Exclusions:
+                            - String
+                        Path: String
     {% endif %}
-  {% endfor %}
+    {% endif %}
+{######################################################################################################################}
+{% endfor %}

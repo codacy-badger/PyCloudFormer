@@ -1,30 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
-
-    GlueClassifier:
-        Type: AWS::Glue::Classifier
-        Properties:
-          CsvClassifier:
-            AllowSingleColumn: Boolean
-            ContainsHeader: String
-            Delimiter: String
-            DisableValueTrimming: Boolean
-            Header:
-              - String
-            Name: String
-            QuoteSymbol: String
-          GrokClassifier:
-            Classification: String
-            CustomPatterns: String
-            GrokPattern: String
-            Name: String
-          JsonClassifier:
-            JsonPath: String
-            Name: String
-          XMLClassifier:
-            Classification: String
-            Name: String
-            RowTag: String
     #   String
     GlueJob:
         Type: AWS::Glue::Job
@@ -34,6 +9,8 @@ Resources:
                 Name: String
                 PythonVersion: String
                 ScriptLocation: String
+            Connections:
+                - String
             DefaultArguments: Json
             Description: String
             ExecutionProperty:
@@ -47,5 +24,64 @@ Resources:
             Role: String
             SecurityConfiguration: String
             WorkerType: String
-
-
+    #   String
+    GlueClassifier:
+        Type: AWS::Glue::Classifier
+        Properties:
+            CsvClassifier:
+                AllowSingleColumn: Boolean
+                ContainsHeader: String
+                Delimiter: String
+                DisableValueTrimming: Boolean
+                Header:
+                    - String
+                Name: String
+                QuoteSymbol: String
+            GrokClassifier:
+                Classification: String
+                CustomPatterns: String
+                GrokPattern: String
+                Name: String
+            JsonClassifier:
+                JsonPath: String
+                Name: String
+            XMLClassifier:
+                Classification: String
+                Name: String
+                RowTag: String
+    #   String
+    GlueDatabase:
+        Type: AWS::Glue::Database
+        Properties:
+            CatalogId: String
+            DatabaseInput:
+                Description: String
+                LocationUri: String
+                Name: String
+                Parameters: Json
+    #   String
+    GlueCrawler:
+        Type: AWS::Glue::Crawler
+        Properties:
+            Classifiers:
+                - String
+            Configuration: String
+            CrawlerSecurityConfiguration: String
+            DatabaseName: String
+            Description: String
+            Name: String
+            Role: String
+            Schedule:
+                ScheduleExpression: String
+            SchemaChangePolicy:
+                DeleteBehavior: String
+                UpdateBehavior: String
+            TablePrefix: String
+            Tags: Json
+            Targets:
+                JdbcTargets:
+                    - JdbcTarget
+                S3Targets:
+                    -   Exclusions:
+                            - String
+                        Path: String

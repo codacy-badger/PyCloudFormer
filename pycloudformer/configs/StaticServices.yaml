@@ -1,6 +1,6 @@
 RootConfig:
     #   ---
-    #   RootConfig allows for multiple CloudFormation Scripts to be generated at a scalable level
+    #   Config allows for multiple CloudFormation Scripts to be generated at a scalable level
     #   Specify Service Type along with Parameters, Service Types can be duplicated to create multiples
     #   of the same service with matching or different parameters. Note each Service Type will need the
     #   SPECIFIC service name along with additional names suited to your needs. This will result in the
@@ -10,6 +10,26 @@ RootConfig:
     #   final output file. If an entire service is not required, remove the Stack entirely and PyCloudFormer
     #   will not add it to the final output file.
     #   ---
+
+    GlueJob:
+        AllocatedCapacity: None
+        CommandName: String
+        CommandPythonVersion: String
+        CommandScriptLocation: String
+        Connections:
+            - String
+        DefaultArguments: Json
+        Description: String
+        MaxConcurrentRuns: Double
+        GlueVersion: String
+        LogUri: String
+        MaxCapacity: Double
+        MaxRetries: Double
+        Name: String
+        NumberOfWorkers: Integer
+        Role: String
+        SecurityConfiguration: String
+        WorkerType: String
 
     GlueClassifier:
         Name: String
@@ -30,22 +50,28 @@ RootConfig:
         XMLClassifier:
             RowTag: String
 
-    GlueJob:
-        AllocatedCapacity: None
-        CommandName: String
-        CommandPythonVersion: String
-        CommandScriptLocation: String
-        Connections:
-            -
-        DefaultArguments: Json
+    GlueDatabase:
+        CatalogId: String
         Description: String
-        MaxConcurrentRuns: Double
-        GlueVersion: String
-        LogUri: String
-        MaxCapacity: Double
-        MaxRetries: Double
+        LocationUri: String
         Name: String
-        NumberOfWorkers: Integer
+        Parameters: Json
+
+    GlueCrawler:
+        Classifiers:
+            - String
+        Configuration: String
+        CrawlerSecurityConfiguration: String
+        DatabaseName: String
+        Description: String
+        Name: String
         Role: String
-        SecurityConfiguration: String
-        WorkerType: String
+        ScheduleExpression: String
+        DeleteBehavior: String
+        UpdateBehavior: String
+        TablePrefix: String
+        Tags: Json
+        JdbcTargets:
+            - JdbcTarget
+        S3Targets:
+            - String
