@@ -269,4 +269,89 @@ Resources:
     {% endif %}
     {% endif %}
 {######################################################################################################################}
+    {% if "Lambda" in k or "Function" in k %}
+    {% if v.FunctionName != None %}
+    {{ '#   ' + v.Description }}
+    {{ k }}:
+        Type: AWS::Lambda::Function
+        Properties:
+            Code:
+                {% if v.S3Bucket != None %}
+                S3Bucket: {{ v.S3Bucket }}
+                {% endif %}
+                {% if v.S3Key != None %}
+                S3Key: {{ v.S3Key }}
+                {% endif %}
+                {% if v.S3ObjectVersion != None %}
+                S3ObjectVersion: {{ v.S3ObjectVersion }}
+                {% endif %}
+                {% if v.ZipFile != None %}
+                ZipFile: {{ v.ZipFile }}
+                {% endif %}
+            {% if v.TargetArn != None %}
+            DeadLetterConfig:
+                TargetArn: {{ v.TargetArn }}
+            {% endif %}
+            {% if v.Description != None %}
+            Description: {{ v.Description }}
+            {% endif %}
+            {% if v.EnvironmentVariables != None %}
+            Environment:
+                Variables:
+                    {% for ek, ev in v.EnvironmentVariables.items() %}
+                    {{ ek + ': ' + ev }}
+                    {% endfor %}
+            {% endif %}
+            {% if v.FunctionName != None %}
+            FunctionName: {{ v.FunctionName }}
+            {% endif %}
+            {% if v.Handler != None %}
+            Handler: {{ v.Handler }}
+            {% endif %}
+            {% if v.KmsKeyArn != None %}
+            KmsKeyArn: {{ v.KmsKeyArn }}
+            {% endif %}
+            {% if v.Layers != None %}
+            Layers:
+                {% for l in v.Layers %}
+                - {{ l }}
+                {% endfor %}
+            {% endif %}
+            {% if v.MemorySize != None %}
+            MemorySize: {{ v.MemorySize }}
+            {% endif %}
+            {% if v.ReservedConcurrentExecutions != None %}
+            ReservedConcurrentExecutions: {{ v.ReservedConcurrentExecutions }}
+            {% endif %}
+            {% if v.Role != None %}
+            Role: {{ v.Role }}
+            {% endif %}
+            {% if v.Runtime != None %}
+            Runtime: {{ v.Runtime }}
+            {% endif %}
+            {% if v.Timeout != None %}
+            Timeout: {{ v.Timeout }}
+            {% endif %}
+            {% if v.TracingConfigMode != None %}
+            TracingConfig:
+                Mode: {{ v.TracingConfigMode }}
+            {% endif %}
+            {% if v.SecurityGroupIds != None or v.SubnetIds != None %}
+            VpcConfig:
+                {% if v.SecurityGroupIds != None %}
+                SecurityGroupIds:
+                    {% for se in v.SecurityGroupIds %}
+                    - {{ se }}
+                    {% endfor %}
+                {% endif %}
+                {% if v.SubnetIds != None %}
+                SubnetIds:
+                    {% for su in v.SubnetIds %}
+                    - {{ su }}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+    {% endif %}
+    {% endif %}
+{######################################################################################################################}
 {% endfor %}

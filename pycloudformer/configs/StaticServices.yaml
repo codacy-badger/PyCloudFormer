@@ -88,3 +88,28 @@ RootConfig:
         IgnorePublicAcls: Boolean
         RestrictPublicBuckets: Boolean
 
+    LambdaFunction:
+        S3Bucket: String
+        S3Key: String
+        S3ObjectVersion: String
+        ZipFile: String
+        TargetArn: String
+        Description: String
+        EnvironmentVariables:
+            Key: Value
+        FunctionName: String
+        Handler: String
+        KmsKeyArn: String
+        Layers:
+            - String
+        MemorySize: Integer
+        ReservedConcurrentExecutions: Integer
+        Role: String
+        Runtime: String
+        Timeout: Integer
+        TracingConfigMode: String
+        SecurityGroupIds:
+            - String
+        SubnetIds:
+            - String
+

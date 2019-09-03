@@ -102,4 +102,37 @@ Resources:
                 BlockPublicPolicy: Boolean
                 IgnorePublicAcls: Boolean
                 RestrictPublicBuckets: Boolean
+    #   String
+    LambdaFunction:
+        Type: AWS::Lambda::Function
+        Properties:
+            Code:
+                S3Bucket: String
+                S3Key: String
+                S3ObjectVersion: String
+                ZipFile: String
+            DeadLetterConfig:
+                TargetArn: String
+            Description: String
+            Environment:
+                Variables:
+                    Key: Value
+                    Key2: Value
+            FunctionName: String
+            Handler: String
+            KmsKeyArn: String
+            Layers:
+                - String
+            MemorySize: Integer
+            ReservedConcurrentExecutions: Integer
+            Role: String
+            Runtime: String
+            Timeout: Integer
+            TracingConfig:
+                Mode: String
+            VpcConfig:
+                SecurityGroupIds:
+                    - String
+                SubnetIds:
+                    - String
 
