@@ -49,4 +49,9 @@ To see details on the project and what is currently happening in the development
     * Glue Database
     * Glue Crawler
     * more will be added...
+* Static S3 Buckets
+    * S3 Encryption
+    * S3 Version
+    * S3 AccessBlock
+    * more will be added ...    
 * More Services will be added...
