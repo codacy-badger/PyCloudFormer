@@ -117,7 +117,6 @@ Resources:
             Environment:
                 Variables:
                     Key: Value
-                    Key2: Value
             FunctionName: String
             Handler: String
             KmsKeyArn: String
@@ -135,4 +134,45 @@ Resources:
                     - String
                 SubnetIds:
                     - String
+    #   String
+    EventRule:
+        Type: AWS::Events::Rule
+        Properties:
+            Description: String
+            EventPattern: Json
+            Name: String
+            RoleArn: String
+            ScheduleExpression: String
+            State: String
+            Targets:
+                -   Arn: String
+                    EcsParameters:
+                        Group: String
+                        LaunchType: String
+                        NetworkConfiguration:
+                            AwsVpcConfiguration:
+                                AssignPublicIp: String
+                                SecurityGroups:
+                                    - String
+                                Subnets:
+                                    - String
+                        PlatformVersion: String
+                        TaskCount: Integer
+                        TaskDefinitionArn: String
+                    Id: String
+                    Input: String
+                    InputPath: String
+                    InputTransformer:
+                        InputPathsMap:
+                            Key: Value
+                            InputTemplate: String
+                    KinesisParameters:
+                        PartitionKeyPath: String
+                    RoleArn: String
+                    RunCommandParameters:
+                        RunCommandTargets:
+                            -   Key:
+                                Values:
+                    SqsParameters:
+                        MessageGroupId: String
 

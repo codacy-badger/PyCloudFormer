@@ -56,4 +56,6 @@ To see details on the project and what is currently happening in the development
     * more will be added ...   
 * AWS Lambda Services
     * Lambda Function 
+* AWS Cloud Watch Services
+    * Event Rules
 * More Services will be added...

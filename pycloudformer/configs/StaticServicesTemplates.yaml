@@ -81,3 +81,59 @@ S3<additional-name-here>:
     BlockPublicPolicy: Boolean
     IgnorePublicAcls: Boolean
     RestrictPublicBuckets: Boolean
+
+
+LambdaFunction<additional-name-here>:
+    S3Bucket: String
+    S3Key: String
+    S3ObjectVersion: String
+    ZipFile: String
+    TargetArn: String
+    Description: String
+    EnvironmentVariables:
+        Key: Value
+    FunctionName: String
+    Handler: String
+    KmsKeyArn: String
+    Layers:
+        - String
+    MemorySize: Integer
+    ReservedConcurrentExecutions: Integer
+    Role: String
+    Runtime: String
+    Timeout: Integer
+    TracingConfigMode: String
+    SecurityGroupIds:
+        - String
+    SubnetIds:
+        - String
+
+EventRule<additional-name-here>:
+    Description: String
+    EventPattern: Json
+    Name: String
+    RoleArn: String
+    ScheduleExpression: String
+    State: String
+    TargetArn: String
+    EcsParametersGroup: String
+    EcsParametersLaunchType: String
+    NetworkConfigurationAssignPublicIp: String
+    NetworkConfigurationSecurityGroups:
+        - String
+    NetworkConfigurationSubnets:
+        - String
+    PlatformVersion: String
+    TaskCount: Integer
+    TaskDefinitionArn: String
+    Id: String
+    Input: String
+    InputPath: String
+    InputPathsKey: Value
+    InputTemplate: String
+    PartitionKeyPath: String
+    RunCommandTargets:
+        -   Key: String
+            Values:
+                - String
+    MessageGroupId: String

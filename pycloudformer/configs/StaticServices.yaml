@@ -1,14 +1,14 @@
 RootConfig:
     #   ---
-    #   Config allows for multiple CloudFormation Scripts to be generated at a scalable level
-    #   Specify Service Type along with Parameters, Service Types can be duplicated to create multiples
-    #   of the same service with matching or different parameters. Note each Service Type will need the
-    #   SPECIFIC service name along with additional names suited to your needs. This will result in the
-    #   stack-name of your service Cloud Formation Script.
-    #   ---
-    #   If Parameter is not required, leave its value BLANK and PyCloudFormer will not add it to the
-    #   final output file. If an entire service is not required, remove the Stack entirely and PyCloudFormer
-    #   will not add it to the final output file.
+    #       Config allows for multiple CloudFormation Scripts to be generated at a scalable level
+    #       Specify Service Type along with Parameters, Service Types can be duplicated to create multiples
+    #       of the same service with matching or different parameters. Note each Service Type will need the
+    #       SPECIFIC service name along with additional names suited to your needs. This will result in the
+    #       stack-name of your service Cloud Formation Script.
+    #       ---
+    #       If Parameter is not required, leave its value BLANK and PyCloudFormer will not add it to the
+    #       final output file. If an entire service is not required, remove the Stack entirely and PyCloudFormer
+    #       will not add it to the final output file.
     #   ---
 
     GlueJob:
@@ -113,3 +113,32 @@ RootConfig:
         SubnetIds:
             - String
 
+    EventRule:
+        Description: String
+        EventPattern: Json
+        Name: String
+        RoleArn: String
+        ScheduleExpression: String
+        State: String
+        TargetArn: String
+        EcsParametersGroup: String
+        EcsParametersLaunchType: String
+        NetworkConfigurationAssignPublicIp: String
+        NetworkConfigurationSecurityGroups:
+            - String
+        NetworkConfigurationSubnets:
+            - String
+        PlatformVersion: String
+        TaskCount: Integer
+        TaskDefinitionArn: String
+        Id: String
+        Input: String
+        InputPath: String
+        InputPathsKey: Value
+        InputTemplate: String
+        PartitionKeyPath: String
+        RunCommandTargets:
+            -   Key: String
+                Values:
+                    - String
+        MessageGroupId: String

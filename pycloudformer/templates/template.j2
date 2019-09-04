@@ -354,4 +354,108 @@ Resources:
     {% endif %}
     {% endif %}
 {######################################################################################################################}
+    {% if "EventRule" in k %}
+    {% if v.FunctionName != None %}
+    {{ '#   ' + v.Description }}
+    {{ k }}:
+        Type: AWS::Events::Rule
+        Properties:
+            {% if v.Description != None %}
+            Description: {{ v.Description }}
+            {% endif %}
+            {% if v.EventPattern != None %}
+            EventPattern: {{ v.EventPattern }}
+            {% endif %}
+            {% if v.Name != None %}
+            Name: {{ v.Name }}
+            {% endif %}
+            {% if v.RoleArn != None %}
+            RoleArn: {{ v.RoleArn }}
+            {% endif %}
+            {% if v.ScheduleExpression != None %}
+            ScheduleExpression: {{ v.ScheduleExpression }}
+            {% endif %}
+            {% if v.State != None %}
+            State: {{ v.State }}
+            {% endif %}
+            Targets:
+                -   {% if v.TargetArn != None %}Arn: {{ v.TargetArn }}
+                    {% endif %}
+                    {% if v.EcsParametersGroup != None or v.EcsParametersLaunchType != None or v.NetworkConfigurationAssignPublicIp != None%}
+                    EcsParameters:
+                        {% if v.EcsParametersGroup != None %}
+                        Group: {{ v.EcsParametersGroup }}
+                        {% endif %}
+                        {% if v.EcsParametersLaunchType != None %}
+                        LaunchType: {{ v.EcsParametersLaunchType }}
+                        {% endif %}
+                        NetworkConfiguration:
+                            AwsVpcConfiguration:
+                                {% if v.NetworkConfigurationAssignPublicIp != None %}
+                                AssignPublicIp: String
+                                {% endif %}
+                                {% if v.NetworkConfigurationSecurityGroups != None %}
+                                SecurityGroups:
+                                    {% for ncsg in v.NetworkConfigurationSecurityGroups %}
+                                    - {{ ncsg }}
+                                    {% endfor %}
+                                {% endif %}
+                                {% if v.NetworkConfigurationSubnets != None %}
+                                Subnets:
+                                    {% for ncs in v.NetworkConfigurationSubnets %}
+                                    - {{ ncs }}
+                                    {% endfor %}
+                                {% endif %}
+                        {% if v.PlatformVersion != None %}
+                        PlatformVersion: {{ v.PlatformVersion }}
+                        {% endif %}
+                        {% if v.TaskCount != None %}
+                        TaskCount: {{ v.TaskCount }}
+                        {% endif %}
+                        {% if v.TaskDefinitionArn != None %}
+                        TaskDefinitionArn: {{ v.TaskDefinitionArn }}
+                        {% endif %}
+                    {% endif %}
+                    {% if v.Id != None %}
+                    Id: {{ v.Id }}
+                    {% endif %}
+                    {% if v.Input != None %}
+                    Input: {{ v.Input }}
+                    {% endif %}
+                    {% if v.InputPath != None %}
+                    InputPath: {{ v.InputPath }}
+                    {% endif %}
+                    {% if v.InputPathsKey != None and v.InputTemplate != None %}
+                    InputTransformer:
+                        InputPathsMap:
+                            {% if v.InputPathsKey != None %}
+                            Key: {{ v.InputPathsKey }}
+                            {% endif %}
+                            {% if v.InputTemplate != None %}
+                            InputTemplate: {{ v.InputTemplate }}
+                            {% endif %}
+                    {% endif %}
+                    {% if v.PartitionKeyPath != None %}
+                    KinesisParameters:
+                        PartitionKeyPath: {{ v.PartitionKeyPath }}
+                    {% endif %}
+                    {% if v.RoleArn != None %}
+                    RoleArn: {{ v.RoleArn }}
+                    {% endif %}
+                    {% if v.RunCommandTargets.Key != None and v.RunCommandTargets.Values != None %}
+                    RunCommandParameters:
+                        RunCommandTargets:
+                            -   Key: {{ v.RunCommandTargets.Key }}
+                                Values:
+                                    {% for rctv in v.RunCommandTargets.Values %}
+                                    - {{ rctv }}
+                                    {% endfor %}
+                    {% endif %}
+                    {% if v.MessageGroupId != None %}
+                    SqsParameters:
+                        MessageGroupId: {{ v.MessageGroupId }}
+                    {% endif %}
+    {% endif %}
+    {% endif %}
+{######################################################################################################################}
 {% endfor %}
