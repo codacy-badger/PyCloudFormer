@@ -4,7 +4,6 @@
 #   ---
 #   DO NOT MODIFY!
 #   ---
-
 GlueJob<additional-name-here>:
     AllocatedCapacity: None
     CommandName: String

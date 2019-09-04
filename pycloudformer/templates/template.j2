@@ -1,5 +1,13 @@
 AWSTemplateFormatVersion: "2010-09-09"
-{# ToDo: Define variables for cloud formation stacks #}
+{% for k, v in RootConfig.items() %}
+{% if "Parameters" in k %}
+Parameters:
+    {% for param in v %}
+    {{ param }}
+    {% endfor %}
+{% endif %}
+{% endfor %}
+
 Resources:
 {% for k, v in RootConfig.items() %}
     {% if "GlueJob" in k %}

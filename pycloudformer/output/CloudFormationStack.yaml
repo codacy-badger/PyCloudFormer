@@ -1,4 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  {'ParameterName': {'Description': 'String', 'Type': 'String', 'AllowedValues': ['Array']}}
+
 Resources:
     #   String
     GlueJob:

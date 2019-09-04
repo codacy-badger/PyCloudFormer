@@ -3,6 +3,7 @@ import os
 from pycloudformer.cloudformation import *
 
 __supported_services__ = [
+    'Parameters',
     'GlueJob',
     'GlueClassifier',
     'GlueDatabase',

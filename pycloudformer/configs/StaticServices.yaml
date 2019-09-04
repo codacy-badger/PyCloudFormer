@@ -11,6 +11,11 @@ RootConfig:
     #       will not add it to the final output file.
     #   ---
 
+    Parameters:
+        -   ParameterName:
+                Description: String
+                Type: String
+                AllowedValues: [Array]
     GlueJob:
         AllocatedCapacity: None
         CommandName: String
