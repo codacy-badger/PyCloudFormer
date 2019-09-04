@@ -1,6 +1,9 @@
 ![alt text](pycloudformer/static/logo.png "PyCloudFormer Logo" ) 
 
 ---
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/edfaea8317a94727988792fc3d53f427)](https://app.codacy.com/app/dirkscgm/PyCloudFormer?utm_source=github.com&utm_medium=referral&utm_content=DirksCGM/PyCloudFormer&utm_campaign=Badge_Grade_Dashboard)
+
 ### Cloud Formation Program that Generates AWS CloudFormation scripts in YAML
 
 The project is still under development. However, the goal is to have a tool that can easily generate dynamic CloudFormation
