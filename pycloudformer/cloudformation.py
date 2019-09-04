@@ -20,7 +20,7 @@ class YamlBuilder:
         :return: dictionary
         """
         if '.yaml' in e:
-            return yaml.load(open(e), yaml.FullLoader)
+            return yaml.load(open(e), yaml.SafeLoader)
         else:
             raise ValueError('{} is not a valid YAML file'.format(e))
 
@@ -31,7 +31,7 @@ class YamlBuilder:
         """
         if '.yaml' in self.configs:
             config_data = self.load_yaml(self.configs)
-            env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True)
+            env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True, autoescape=False)
             template = env.get_template(self.template)
             print(template.render(config_data), file=open(self.output, "w"))
         else:

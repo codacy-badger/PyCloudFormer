@@ -1,17 +1,17 @@
 import unittest
 
 from pycloudformer.environment import *
-from pycloudformer.cloudformation import *
 
 
 class TestSum(unittest.TestCase):
 
     def test_find_dir(self):
-        assert find_dir('../pycloudformer') is True, 'should return True'
+        if find_dir('../pycloudformer') is not True:
+            raise AssertionError('test_find_dir should return True')
 
     def test_load_yaml(self):
-        assert isinstance(YamlBuilder.load_yaml('../pycloudformer/configs/StaticServices.yaml'),
-                          dict) is True, 'should return True'
+        if isinstance(YamlBuilder.load_yaml('../pycloudformer/configs/StaticServices.yaml'), dict) is not True:
+            raise AssertionError('test_load_yaml should return True')
 
 
 if __name__ == '__main__':
