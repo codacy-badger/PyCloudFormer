@@ -20,7 +20,7 @@ class YamlBuilder:
         :return: dictionary
         """
         if '.yaml' in e:
-            return yaml.load(open(e), yaml.SafeLoader)
+            return yaml.safe_load(open(e))
         else:
             raise ValueError('{} is not a valid YAML file'.format(e))
 
