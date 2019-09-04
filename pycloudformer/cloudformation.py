@@ -19,19 +19,25 @@ class YamlBuilder:
         :param e: yaml file directory
         :return: dictionary
         """
-        return yaml.load(open(e), yaml.FullLoader)
+        if '.yaml' in e:
+            return yaml.load(open(e), yaml.FullLoader)
+        else:
+            raise ValueError('{} is not a valid YAML file'.format(e))
 
     def build_yaml(self):
         """
         collects configs and templates to generate a yaml file
         :return: writes a yaml file in the output directory
         """
-        config_data = self.load_yaml(self.configs)
-        env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True)
-        template = env.get_template(self.template)
-        print(template.render(config_data), file=open(self.output, "w"))
-
-
-
-
-
+        if '.yaml' in self.configs:
+            config_data = self.load_yaml(self.configs)
+            env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True)
+            template = env.get_template(self.template)
+            print(template.render(config_data), file=open(self.output, "w"))
+        else:
+            if '.yaml' not in self.configs:
+                raise ValueError('{} is not a valid YAML file'.format(self.configs))
+            else:
+                raise ValueError(
+                    'PyCloudFormer failed unexpectedly. '
+                    'Please ensure the templating and configuration folders are free of any errors.')
