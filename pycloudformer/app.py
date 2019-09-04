@@ -1,5 +1,7 @@
 from pycloudformer.environment import *
 
+cd = os.getcwd() + '\\output\\CloudFormationStack.yaml'
+
 
 def compiler():
     """
@@ -9,6 +11,7 @@ def compiler():
     Environment('../pycloudformer/configs/StaticServices.yaml').stack_analyzer()
     YamlBuilder('configs/StaticServices.yaml', 'templates/template.j2',
                 'output/CloudFormationStack.yaml').build_yaml()
+    print('Output saved at: {}'.format(cd))
 
 
 def main():

@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="py-cloud-former",
-    version="0.0.1dev",
+    version="0.1",
     author="DirkScgm",
     author_email="dirkscgm@gmail.com",
-    description="Cloud Formation Program that helps generate AWS CloudFormation scripts in YAML",
+    description="Cloud Formation Program that generates AWS CloudFormation scripts in YAML",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/DirksCGM/PyCloudFormer",
